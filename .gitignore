@@ -14,8 +14,16 @@
 .env
 .env.local
 .env.*.local
+.env.*
 
 # Replit & system
 *.replit
 .replit.db
 replit.nix
+
+# General Node.js
+node_modules
+
+# Logs
+logs
+*.log
