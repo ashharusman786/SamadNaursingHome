@@ -1,5 +1,5 @@
 import { createServer } from "http";
-import { storage } from "./storage";
+import { storage } from "./storage.js";
 import path from "path";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
