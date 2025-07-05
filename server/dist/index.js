@@ -1,12 +1,11 @@
 import express from "express";
 import cors from "cors";
 import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
 const app = express();
 // CORS configuration for production
 const corsOptions = {
     origin: process.env.NODE_ENV === 'production'
-        ? [process.env.CORS_ORIGIN || 'https://your-frontend-domain.vercel.app'] // Will be set in Render environment
+        ? [process.env.CORS_ORIGIN || 'https://samad-nursing-home-client.vercel.app'] // Update with your actual Vercel domain
         : ['http://localhost:3000', 'http://localhost:5173'],
     credentials: true,
     optionsSuccessStatus: 200
@@ -20,9 +19,9 @@ app.use((req, res, next) => {
     const path = req.path;
     let capturedJsonResponse = undefined;
     const originalResJson = res.json;
-    res.json = function (bodyJson, ...args) {
+    res.json = function (bodyJson) {
         capturedJsonResponse = bodyJson;
-        return originalResJson.apply(res, [bodyJson, ...args]);
+        return originalResJson.call(res, bodyJson);
     };
     res.on("finish", () => {
         const duration = Date.now() - start;
@@ -34,7 +33,7 @@ app.use((req, res, next) => {
             if (logLine.length > 80) {
                 logLine = logLine.slice(0, 79) + "…";
             }
-            log(logLine);
+            console.log(logLine);
         }
     });
     next();
@@ -59,13 +58,6 @@ app.get('/health', (req, res) => {
             console.error(err);
         }
     });
-    // Setup Vite in development, serve static in production
-    if (process.env.NODE_ENV === "development") {
-        await setupVite(app, server);
-    }
-    else {
-        serveStatic(app);
-    }
     // Get port from environment or default to 5000
     const port = process.env.PORT || 5000;
     const host = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
@@ -73,6 +65,6 @@ app.get('/health', (req, res) => {
         port: parseInt(port.toString()),
         host
     }, () => {
-        log(`🚀 Server running on ${host}:${port} in ${process.env.NODE_ENV || 'development'} mode`);
+        console.log(`🚀 Server running on ${host}:${port} in ${process.env.NODE_ENV || 'development'} mode`);
     });
 })();

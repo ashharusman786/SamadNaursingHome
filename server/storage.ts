@@ -1,7 +1,16 @@
-import { users, type User, type InsertUser } from "../shared/schema";
+// Simple in-memory storage without external dependencies
+// This avoids build issues with the shared schema
 
-// modify the interface with any CRUD methods
-// you might need
+export interface User {
+  id: number;
+  username: string;
+  password: string;
+}
+
+export interface InsertUser {
+  username: string;
+  password: string;
+}
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;

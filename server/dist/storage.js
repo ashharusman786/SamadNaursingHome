@@ -1,3 +1,5 @@
+// Simple in-memory storage without external dependencies
+// This avoids build issues with the shared schema
 export class MemStorage {
     constructor() {
         this.users = new Map();

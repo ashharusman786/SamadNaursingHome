@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import path from "path";
@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API Routes
-  app.get('/api/health', (req, res) => {
+  app.get('/api/health', (req: Request, res: Response) => {
     res.json({
       status: 'OK',
       timestamp: new Date().toISOString(),
@@ -18,7 +18,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Serve static data
-  app.get('/api/doctors', (req, res) => {
+  app.get('/api/doctors', (req: Request, res: Response) => {
     try {
       const doctorsData = [
         {
@@ -54,7 +54,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get('/api/reviews', (req, res) => {
+  app.get('/api/reviews', (req: Request, res: Response) => {
     try {
       const reviewsData = [
         {
@@ -112,7 +112,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get('/api/translations', (req, res) => {
+  app.get('/api/translations', (req: Request, res: Response) => {
     try {
       const translationsData = {
         "en": {
@@ -258,7 +258,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // User management routes (using in-memory storage for now)
-  app.post('/api/users', async (req, res) => {
+  app.post('/api/users', async (req: Request, res: Response) => {
     try {
       const { username, password } = req.body;
       if (!username || !password) {
@@ -277,7 +277,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get('/api/users/:id', async (req, res) => {
+  app.get('/api/users/:id', async (req: Request, res: Response) => {
     try {
       const userId = parseInt(req.params.id);
       const user = await storage.getUser(userId);

@@ -1,12 +1,10 @@
 import { drizzle } from 'drizzle-orm/neon-http';
 import { neon } from '@neondatabase/serverless';
-
 // Database connection (for future use)
 export function createDatabase() {
-    const sql = neon(process.env.DATABASE_URL!);
+    const sql = neon(process.env.DATABASE_URL);
     return drizzle(sql);
 }
-
 // For now, we'll use in-memory storage
 // When you're ready to use a real database:
 // 1. Set up a Neon PostgreSQL database
