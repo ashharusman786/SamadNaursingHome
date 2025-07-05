@@ -99,7 +99,6 @@ export default function ClinicTimings() {
           <div className="grid md:grid-cols-2 gap-8">
             {doctorsData.slice(0, 2).map((doctor) => {
               const isAvailable = useDoctorAvailability(doctor);
-              const doctorImagePath = `/images/doctors/${doctor.image}`;
 
               return (
                 <Card

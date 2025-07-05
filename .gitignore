@@ -15,6 +15,7 @@
 .env.local
 .env.*.local
 .env.*
+.env.snh
 
 # Replit & system
 *.replit

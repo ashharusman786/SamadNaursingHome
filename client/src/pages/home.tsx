@@ -8,11 +8,11 @@ import ReviewsSection from '@/components/reviews-section';
 import LocationContact from '@/components/location-contact';
 import Footer from '@/components/footer';
 import LanguageToggle from '@/components/language-toggle';
-import AIAssistant from '@/components/ai-assistant';
+import FloatingChatbot from '@/components/floating-chatbot';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-bg-primary">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-teal-50">
       <LanguageToggle />
       <Navigation />
       <HeroSection />
@@ -23,7 +23,7 @@ export default function Home() {
       <ReviewsSection />
       <LocationContact />
       <Footer />
-      <AIAssistant />
+      <FloatingChatbot />
     </div>
   );
 }
