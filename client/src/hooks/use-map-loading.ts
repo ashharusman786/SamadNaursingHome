@@ -13,7 +13,7 @@ export function useMapLoading(timeoutMs: number = 10000): UseMapLoadingReturn {
     const [mapError, setMapError] = useState(false);
     const [mapLoading, setMapLoading] = useState(true);
     const iframeRef = useRef<HTMLIFrameElement>(null);
-    const timeoutRef = useRef<NodeJS.Timeout>();
+    const timeoutRef = useRef<number | undefined>();
 
     useEffect(() => {
         // Set a timeout to detect if the iframe fails to load
@@ -22,7 +22,7 @@ export function useMapLoading(timeoutMs: number = 10000): UseMapLoadingReturn {
                 setMapError(true);
                 setMapLoading(false);
             }
-        }, timeoutMs);
+        }, timeoutMs) as unknown as number;
 
         return () => {
             if (timeoutRef.current) {

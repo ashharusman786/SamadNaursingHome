@@ -35,7 +35,7 @@ export default function MapWithFallback({
   const [mapState, setMapState] = useState<'loading' | 'loaded' | 'error' | 'timeout'>('loading');
   const [retryCount, setRetryCount] = useState(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<number | undefined>();
 
   const maxRetries = 3;
   const timeoutMs = 8000;
@@ -53,7 +53,7 @@ export default function MapWithFallback({
       if (mapState === 'loading') {
         setMapState('timeout');
       }
-    }, timeoutMs);
+    }, timeoutMs) as unknown as number;
 
     return () => {
       if (timeoutRef.current) {
