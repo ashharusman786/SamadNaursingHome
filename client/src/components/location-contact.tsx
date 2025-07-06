@@ -1,18 +1,28 @@
 import { useTranslation } from "@/hooks/use-translation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import MapWithFallback from "@/components/map-with-fallback";
 import {
   Phone,
   Mail,
   MessageCircle,
-  MapPin,
-  ArrowDownRight,
   Clock,
-  Navigation,
 } from "lucide-react";
 
 export default function LocationContact() {
   const { t } = useTranslation();
+
+  const hospitalLocation = {
+    lat: 26.18918008058415,
+    lng: 83.22167698219027,
+    address: t("address-english")
+  };
+
+  const mapUrls = {
+    embed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d895.0576175541946!2d83.22167698219027!3d26.18918008058415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3991a1da67192b05%3A0x8b48ca93fe9b6c21!2sSamad%20Nursing%20Home!5e0!3m2!1sen!2sin!4v1751469448526!5m2!1sen!2sin",
+    fallback: `https://www.google.com/maps?q=${hospitalLocation.lat},${hospitalLocation.lng}`,
+    directions: "https://g.co/kgs/K9Cjyrm"
+  };
 
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-blue-50 via-white to-teal-50">
@@ -28,50 +38,12 @@ export default function LocationContact() {
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
           {/* Map Section */}
-          <Card className="glassmorphism rounded-3xl shadow-2xl overflow-hidden border border-white/20 backdrop-blur-sm">
-            <div className="relative h-96">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d895.0576175541946!2d83.22167698219027!3d26.18918008058415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3991a1da67192b05%3A0x8b48ca93fe9b6c21!2sSamad%20Nursing%20Home!5e0!3m2!1sen!2sin!4v1751469448526!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                className="rounded-t-3xl"
-              />
-              {/* Map overlay with glassmorphism */}
-              <div className="absolute top-4 left-4 glassmorphism rounded-xl p-3 border border-white/20">
-                <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-                  <Navigation className="w-4 h-4 text-teal-600" />
-                  <span>Live Location</span>
-                </div>
-              </div>
-            </div>
-            <CardContent className="p-8">
-              <h4 className="text-xl font-bold mb-4 text-gray-800 flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-teal-600" />
-                {t("hospital-address")}
-              </h4>
-              <p className="text-gray-600 mb-6 whitespace-pre-line leading-relaxed">
-                {t("address-english")}
-              </p>
-              <Button
-                asChild
-                className="group bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 text-white px-6 py-3 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg"
-              >
-                <a
-                  href="https://g.co/kgs/K9Cjyrm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2"
-                >
-                  <ArrowDownRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  <span>{t("get-directions-btn")}</span>
-                </a>
-              </Button>
-            </CardContent>
-          </Card>
+          <MapWithFallback
+            embedUrl={mapUrls.embed}
+            fallbackUrl={mapUrls.fallback}
+            directionsUrl={mapUrls.directions}
+            location={hospitalLocation}
+          />
 
           {/* Contact Information */}
           <div className="space-y-6">
