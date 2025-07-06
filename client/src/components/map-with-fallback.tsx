@@ -172,7 +172,7 @@ export default function MapWithFallback({
                   <Button
                     onClick={handleRetry}
                     variant="outline"
-                    className="w-full"
+                    className="w-full fallback-btn"
                   >
                     <RefreshCw className="w-4 h-4 mr-2" />
                     <span>Retry Map</span>
@@ -183,7 +183,7 @@ export default function MapWithFallback({
                     key={index}
                     asChild
                     variant="outline"
-                    className="w-full"
+                    className="w-full fallback-btn"
                   >
                     <a
                       href={link.href}

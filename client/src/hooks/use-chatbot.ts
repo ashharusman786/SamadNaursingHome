@@ -37,7 +37,17 @@ export function useChatbot(currentLang: string): UseChatbotReturn {
 
     // Initialize chat when component mounts or language changes
     useEffect(() => {
-        initializeChat();
+        const welcomeMessage: ChatMessage = {
+            id: Date.now().toString(),
+            text: currentLang === 'hi'
+                ? 'नमस्ते! मैं आपका स्वास्थ्य सहायक हूं। आज मैं आपकी कैसे मदद कर सकता हूं?'
+                : "Hello! I'm your healthcare assistant. How can I help you today?",
+            isUser: false,
+            timestamp: new Date()
+        };
+        setMessages([welcomeMessage]);
+        setUnreadCount(1);
+        setIsTyping(false);
     }, [currentLang]);
 
     // Reset unread count when chat is opened
@@ -51,7 +61,16 @@ export function useChatbot(currentLang: string): UseChatbotReturn {
     usePageReload({
         onReload: () => {
             // Reset chatbot state on page reload
-            initializeChat();
+            const welcomeMessage: ChatMessage = {
+                id: Date.now().toString(),
+                text: currentLang === 'hi'
+                    ? 'नमस्ते! मैं आपका स्वास्थ्य सहायक हूं। आज मैं आपकी कैसे मदद कर सकता हूं?'
+                    : "Hello! I'm your healthcare assistant. How can I help you today?",
+                isUser: false,
+                timestamp: new Date()
+            };
+            setMessages([welcomeMessage]);
+            setUnreadCount(1);
             setIsOpen(false);
             setIsMinimized(false);
             setIsTyping(false);
@@ -59,12 +78,12 @@ export function useChatbot(currentLang: string): UseChatbotReturn {
         }
     });
 
-    const initializeChat = useCallback(() => {
+    const resetChat = useCallback(() => {
         const welcomeMessage: ChatMessage = {
             id: Date.now().toString(),
             text: currentLang === 'hi'
                 ? 'नमस्ते! मैं आपका स्वास्थ्य सहायक हूं। आज मैं आपकी कैसे मदद कर सकता हूं?'
-                : 'Hello! I\'m your healthcare assistant. How can I help you today?',
+                : "Hello! I'm your healthcare assistant. How can I help you today?",
             isUser: false,
             timestamp: new Date()
         };
@@ -72,10 +91,6 @@ export function useChatbot(currentLang: string): UseChatbotReturn {
         setUnreadCount(1);
         setIsTyping(false);
     }, [currentLang]);
-
-    const resetChat = useCallback(() => {
-        initializeChat();
-    }, [initializeChat]);
 
     const sendMessage = useCallback(async (text: string) => {
         if (!text.trim() || isTyping) return;
@@ -212,6 +227,6 @@ export function useChatbot(currentLang: string): UseChatbotReturn {
         setIsMuted,
         sendMessage,
         resetChat,
-        initializeChat
+        initializeChat: resetChat
     };
 } 
