@@ -7,13 +7,25 @@ export default function HeroSection() {
   const { t } = useTranslation();
 
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-teal-50 overflow-hidden w-full"
-    >
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-800 z-10 w-full">
-        <div className="max-w-5xl mx-auto w-full">
-          <div className="glassmorphism rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 border border-white/20 shadow-2xl bg-white/80 backdrop-blur-md w-full">
+    <section className="relative overflow-hidden min-h-[60vh] flex items-center justify-center py-16 sm:py-24">
+      {/* Background image layer */}
+      <div
+        className="absolute inset-0 z-0"
+        aria-hidden="true"
+        style={{
+          backgroundImage: "url('/images/hero-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          filter: "blur(4px) brightness(0.7)",
+        }}
+      />
+      {/* Optional: colored overlay for extra contrast */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-br from-white/60 via-teal-50/60 to-blue-100/60 dark:from-gray-900/70 dark:to-blue-900/70" />
+      {/* Main content */}
+      <div className="relative z-20 max-w-4xl lg:max-w-6xl mx-auto text-center px-2 sm:px-4">
+        <div className="relative container mx-auto px-0 sm:px-6 lg:px-8 text-center text-gray-800 z-10 w-full">
+          <div className="max-w-4xl lg:max-w-6xl mx-auto w-full">
+            <div className="glassmorphism rounded-3xl p-4 sm:p-8 md:p-12 lg:p-20 border border-white/20 shadow-2xl bg-white/70 backdrop-blur-md w-full">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-teal-50 rounded-full px-4 py-2 mb-6 sm:mb-8 border border-blue-200 text-blue-700 text-sm font-medium">
               <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
@@ -63,6 +75,7 @@ export default function HeroSection() {
               <div className="text-center">
                 <div className="text-3xl sm:text-4xl font-bold text-teal-700 mb-2">5+</div>
                 <div className="text-sm sm:text-base font-medium text-gray-700">{t('value-years-experience')}</div>
+                </div>
               </div>
             </div>
           </div>

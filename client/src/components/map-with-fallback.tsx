@@ -118,6 +118,45 @@ export default function MapWithFallback({
   ];
 
   return (
+    <>
+      {/* Custom Offline Popup */}
+      {isOffline && (mapState === 'error' || mapState === 'timeout') && (
+        <div>
+          {/* Desktop/Tablet: Centered */}
+          <div className="hidden md:fixed md:inset-0 md:flex md:items-center md:justify-center md:z-50">
+            <div className="glassmorphism border-2 border-red-500 bg-white shadow-2xl rounded-2xl px-8 py-6 flex flex-col items-center max-w-md w-full font-sans">
+              <WifiOff className="w-10 h-10 text-red-500 mb-3" />
+              <h3 className="text-lg font-bold text-red-700 mb-2">No Internet Connection</h3>
+              <p className="text-gray-700 mb-4 text-center">You are offline. Please check your connection and reload the map.</p>
+              <Button
+                onClick={handleRetry}
+                variant="outline"
+                className="border-red-500 text-red-700 hover:bg-red-50 font-semibold"
+              >
+                <RefreshCw className="w-4 h-4 mr-2" />
+                Retry Map
+              </Button>
+            </div>
+          </div>
+          {/* Mobile: Top of screen */}
+          <div className="md:hidden fixed top-0 left-0 w-full flex justify-center z-50 px-2">
+            <div className="glassmorphism border-2 border-red-500 bg-white shadow-2xl rounded-b-2xl px-4 py-3 flex flex-col items-center w-full max-w-sm font-sans mt-2">
+              <WifiOff className="w-8 h-8 text-red-500 mb-2" />
+              <h3 className="text-base font-bold text-red-700 mb-1">No Internet Connection</h3>
+              <p className="text-gray-700 mb-2 text-center text-sm">You are offline. Please check your connection and reload the map.</p>
+              <Button
+                onClick={handleRetry}
+                variant="outline"
+                className="border-red-500 text-red-700 hover:bg-red-50 font-semibold w-full"
+              >
+                <RefreshCw className="w-4 h-4 mr-2" />
+                Retry Map
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Main Map Card */}
     <Card className={`glassmorphism rounded-3xl shadow-2xl overflow-hidden border border-white/20 backdrop-blur-sm ${className}`}>
       <div className="relative h-96">
         {/* Loading State */}
@@ -263,5 +302,6 @@ export default function MapWithFallback({
         </div>
       </CardContent>
     </Card>
+    </>
   );
 } 

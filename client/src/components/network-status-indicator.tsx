@@ -34,7 +34,7 @@ export default function NetworkStatusIndicator() {
               <WifiOff className="w-5 h-5 text-red-600" />
               <div className="text-sm">
                 <p className="font-medium text-red-700">You're offline</p>
-                <p className="text-red-600 text-xs">Check your connection</p>
+                <p className="text-red-600 text-xs">No internet connection. Please check your network.</p>
               </div>
             </>
           ) : (

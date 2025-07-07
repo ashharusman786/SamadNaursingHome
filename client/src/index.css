@@ -440,3 +440,27 @@ body,
   background: #fff !important;
   border: none !important;
 }
+
+.high-contrast {
+  filter: contrast(1.5) invert(1) hue-rotate(180deg);
+  background: #000 !important;
+}
+
+.large-text {
+  font-size: 1.25em !important;
+}
+
+.dyslexia-font {
+  font-family: 'OpenDyslexic', Arial, sans-serif !important;
+}
+
+.reveal-init {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
