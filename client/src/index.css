@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+#root {
+  max-width: 100vw;
+  position: relative;
+  min-height: 100vh;
+}
+
 :root {
   --background: hsl(240, 10%, 10%);
   --foreground: hsl(44, 33%, 15%);
@@ -186,18 +198,86 @@
 
   .text-container {
     min-height: fit-content;
-    padding: 0.5em 0;
-    overflow: visible;
   }
 
   .card-text-safe {
-    padding: 0.75em 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
     line-height: 1.5;
-    overflow: visible;
+    padding: 0.5em 0;
   }
 }
 
-/* Medical Theme Utilities */
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  .mobile-full-height {
+    min-height: 100vh;
+  }
+
+  .mobile-chat-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .mobile-chat-messages {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .mobile-chat-input {
+    border-top: 1px solid #e5e7eb;
+    background: white;
+  }
+
+  .mobile-text-safe {
+    line-height: 1.4;
+    padding: 0.2em 0;
+  }
+
+  /* Mobile navigation improvements */
+  .mobile-nav-container {
+    position: relative;
+    padding: 0.75rem 1rem;
+  }
+
+  /* Mobile card improvements */
+  .mobile-card {
+    margin: 0.5rem 0;
+    padding: 1rem;
+  }
+
+  /* Mobile button improvements */
+  .mobile-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    width: 100%;
+  }
+
+  /* Mobile spacing improvements */
+  .mobile-section {
+    padding: 2rem 1rem;
+  }
+
+  .mobile-heading {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .mobile-subheading {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Medical theme color utilities */
 .text-medical-teal {
   color: var(--medical-teal);
 }
@@ -313,10 +393,50 @@
 .fallback-btn {
   color: #222 !important;
   font-weight: 600;
+  background: #f8fafc !important;
+  border: 1px solid #e5e7eb !important;
+  transition: background 0.2s, color 0.2s;
+}
+
+.fallback-btn:hover {
+  background: #e5e7eb !important;
 }
 
 .dark .fallback-btn {
-  color: #fff !important;
-  border-color: #fff !important;
-  background: rgba(30, 30, 30, 0.7) !important;
+  color: #222 !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+.dark .fallback-btn:hover {
+  background: #e2e8f0 !important;
+}
+
+/* Sticky positioning fixes */
+.sticky-header {
+  position: sticky;
+  z-index: 50;
+}
+
+.sticky-nav {
+  position: sticky;
+  z-index: 40;
+}
+
+/* Ensure proper overflow behavior */
+html,
+body,
+#root {
+  overflow: visible !important;
+  background: #fff !important;
+}
+
+/* Remove any accidental dark border or background from main content */
+.pt-4,
+.pt-28,
+.sm\:pt-32,
+.md\:pt-36,
+.lg\:pt-60 {
+  background: #fff !important;
+  border: none !important;
 }

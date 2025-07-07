@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { MessageCircle, X, Send, Bot, User } from 'lucide-react';
 import { useTranslation } from '@/hooks/use-translation';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface ChatMessage {
   id: string;
@@ -51,6 +52,7 @@ function getBotResponse(input: string, lang: string): string {
 
 export default function FloatingChatbot() {
   const { currentLang } = useTranslation();
+  const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([{
     id: Date.now().toString(),
@@ -81,6 +83,31 @@ export default function FloatingChatbot() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  // Handle mobile keyboard appearance and body scroll
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const handleResize = () => {
+      // Force scroll to bottom when keyboard appears/disappears
+      setTimeout(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    };
+
+    // Prevent body scroll when chatbot is open on mobile
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      document.body.style.overflow = '';
+    };
+  }, [isMobile, isOpen]);
 
   const handleSend = (customText?: string) => {
     const text = customText ?? inputValue;
@@ -125,10 +152,21 @@ export default function FloatingChatbot() {
 
       {/* Chat Modal */}
       {isOpen && (
-        <div className="fixed bottom-0 right-0 z-50 flex items-end justify-end p-4 md:p-8">
-          <div className="w-[95vw] max-w-xs md:max-w-md flex flex-col rounded-2xl shadow-2xl border border-white/20 bg-white dark:bg-gray-900" style={{ height: 500, boxShadow: '0 8px 32px 0 rgba(0,0,0,0.25)' }}>
+        <div 
+          className={`fixed inset-0 z-50 ${isMobile ? 'bg-white mobile-full-height' : 'bg-black/50 flex items-end justify-end p-4 md:p-8'}`}
+        >
+          <div 
+            className={`${isMobile ? 'h-full w-full mobile-chat-container' : 'w-[95vw] max-w-xs md:max-w-md flex flex-col rounded-2xl shadow-2xl border border-white/20 bg-white dark:bg-gray-900'} flex flex-col`} 
+            style={isMobile ? {} : { height: 500, boxShadow: '0 8px 32px 0 rgba(0,0,0,0.25)' }}
+          >
             {/* Header */}
-            <div className="bg-gradient-to-r from-teal-500 to-blue-600 p-4 text-white flex items-center justify-between rounded-t-2xl" style={{ minHeight: 56 }}>
+            <div 
+              className="bg-gradient-to-r from-teal-500 to-blue-600 p-4 text-white flex items-center justify-between" 
+              style={{ 
+                minHeight: 56, 
+                ...(isMobile ? { borderRadius: 0 } : { borderRadius: '1rem 1rem 0 0' }) 
+              }}
+            >
               <div className="flex items-center gap-3 overflow-hidden">
                 <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
                   <Bot className="w-5 h-5" />
@@ -146,7 +184,10 @@ export default function FloatingChatbot() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 px-4 py-2 space-y-4 overflow-y-auto bg-gradient-to-b from-gray-50/50 to-white/30" style={{ minHeight: 0 }}>
+            <div 
+              className={`flex-1 px-4 py-2 space-y-4 overflow-y-auto bg-gradient-to-b from-gray-50/50 to-white/30 ${isMobile ? 'mobile-chat-messages' : ''}`}
+              style={{ minHeight: 0 }}
+            >
               {messages.map((message) => (
                 <div
                   key={message.id}
@@ -195,7 +236,7 @@ export default function FloatingChatbot() {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t border-white/20 bg-white/10 rounded-b-2xl">
+            <div className={`p-4 border-t border-white/20 bg-white/10 ${isMobile ? 'mobile-chat-input' : 'rounded-b-2xl'}`}>
               <div className="flex gap-2 items-center">
                 <input
                   ref={inputRef}

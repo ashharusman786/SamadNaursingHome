@@ -62,30 +62,32 @@ export default function ImageGallery() {
   }, []);
 
   return (
-    <section id="gallery" className="py-20 bg-bg-primary">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h3 className="text-4xl font-bold mb-4 text-text-primary">
-            {t("gallery-title")}
-          </h3>
-          <p className="text-xl text-text-secondary">{t("gallery-subtitle")}</p>
+    <section id="gallery" className="py-16 sm:py-20 md:py-24 lg:py-28 bg-gradient-to-br from-blue-50 via-white to-teal-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <div className="glassmorphism rounded-3xl p-6 sm:p-8 lg:p-12 max-w-4xl mx-auto border border-white/20 shadow-xl">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">
+              {t("gallery-title")}
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">{t("gallery-subtitle")}</p>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 max-w-7xl mx-auto">
           {galleryImages.map((image, index) => (
             <div
               key={index}
-              className="relative overflow-hidden rounded-2xl shadow-lg card-hover"
+              className="group relative overflow-hidden rounded-3xl shadow-xl card-hover border border-white/20 backdrop-blur-sm"
             >
               <img
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-64 object-cover lazy-load"
+                className="w-full h-48 sm:h-56 md:h-64 object-cover lazy-load transition-transform duration-500 group-hover:scale-110"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-              <div className="absolute bottom-4 left-4 text-white">
-                <h4 className="text-lg font-semibold">{image.title}</h4>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+              <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 text-white">
+                <h3 className="text-lg sm:text-xl font-semibold mb-1">{image.title}</h3>
               </div>
             </div>
           ))}

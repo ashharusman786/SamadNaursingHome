@@ -247,7 +247,7 @@ export default function MapWithFallback({
             <Button
               asChild
               variant="outline"
-              className="px-6 py-3 rounded-2xl font-semibold transition-all duration-300"
+              className="px-6 py-3 rounded-2xl font-semibold transition-all duration-300 fallback-btn"
             >
               <a
                 href={fallbackUrl}

@@ -47,46 +47,48 @@ export default function ClinicTimings() {
   };
 
   return (
-    <section id="timings" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h3 className="text-4xl font-bold mb-4 text-text-primary">
-            {t("timings-title")}
-          </h3>
-          <p className="text-xl text-text-secondary">{t("timings-subtitle")}</p>
+    <section id="timings" className="py-16 sm:py-20 md:py-24 lg:py-28 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+          <div className="glassmorphism rounded-3xl p-6 sm:p-8 lg:p-12 max-w-4xl mx-auto border border-white/20 shadow-xl">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-teal-600 to-blue-600 bg-clip-text text-transparent">
+              {t("timings-title")}
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">{t("timings-subtitle")}</p>
+          </div>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* General Hospital Hours */}
-          <div className="bg-gradient-to-r from-gray-900 to-gray-700 text-white rounded-2xl p-8 mb-8 shadow-xl">
+          <div className="bg-gradient-to-r from-gray-900 to-gray-700 text-white rounded-3xl p-8 sm:p-10 lg:p-12 mb-8 sm:mb-12 shadow-2xl">
             <div className="text-center">
-              <h4 className="text-2xl font-bold mb-6 text-white">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 text-white">
                 {t("hospital-hours")}
-              </h4>
-              <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-12">
-                <div className="bg-white bg-opacity-10 rounded-xl p-4 min-w-[200px]">
-                  <p className="text-lg font-semibold text-gray-200 mb-2">
+              </h3>
+              <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-y-0 sm:space-x-8 lg:space-x-12">
+                <div className="bg-white bg-opacity-10 rounded-2xl p-6 min-w-[200px] sm:min-w-[250px] backdrop-blur-sm">
+                  <p className="text-lg sm:text-xl font-semibold text-gray-200 mb-3">
                     {t("weekdays")}
                   </p>
-                  <p className="text-2xl font-bold text-white">
+                  <p className="text-2xl sm:text-3xl font-bold text-white">
                     8:00 AM - 10:00 PM
                   </p>
                 </div>
-                <div className="bg-white bg-opacity-10 rounded-xl p-4 min-w-[200px]">
-                  <p className="text-lg font-semibold text-gray-200 mb-2">
+                <div className="bg-white bg-opacity-10 rounded-2xl p-6 min-w-[200px] sm:min-w-[250px] backdrop-blur-sm">
+                  <p className="text-lg sm:text-xl font-semibold text-gray-200 mb-3">
                     {t("sunday")}
                   </p>
-                  <p className="text-2xl font-bold text-white">
+                  <p className="text-2xl sm:text-3xl font-bold text-white">
                     9:00 AM - 2:00 PM
                   </p>
                 </div>
               </div>
-              <div className="mt-6">
+              <div className="mt-8 sm:mt-10">
                 <span
-                  className={`inline-block px-6 py-3 rounded-full font-bold text-lg ${
+                  className={`inline-block px-8 py-4 rounded-full font-bold text-lg sm:text-xl shadow-lg ${
                     isHospitalOpen
-                      ? "bg-green-600 text-white shadow-lg"
-                      : "bg-red-600 text-white shadow-lg"
+                      ? "bg-green-600 text-white"
+                      : "bg-red-600 text-white"
                   }`}
                 >
                   {isHospitalOpen ? t("open-now") : t("closed-now")}
@@ -96,54 +98,54 @@ export default function ClinicTimings() {
           </div>
 
           {/* Doctor-wise Timings */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10">
             {doctorsData.slice(0, 2).map((doctor) => {
               const isAvailable = useDoctorAvailability(doctor);
 
               return (
                 <Card
                   key={doctor.id}
-                  className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200"
+                  className="glassmorphism rounded-3xl p-6 sm:p-8 shadow-xl border border-white/20 backdrop-blur-sm card-hover"
                 >
                   <CardContent className="p-0">
-                    <div className="flex flex-col items-center text-center">
-                      <h5 className="text-2xl font-bold mb-2 text-text-primary">
+                    <div className="flex flex-col items-center text-center mb-6 sm:mb-8">
+                      <h4 className="text-2xl sm:text-3xl font-bold mb-2 text-gray-800">
                         {doctor.name}
-                      </h5>
-                      <p className="text-md text-text-secondary mb-4">
+                      </h4>
+                      <p className="text-lg sm:text-xl text-teal-600 font-semibold">
                         {doctor.specialty}
                       </p>
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="space-y-4 sm:space-y-6">
                       {doctor.morningHours && (
-                        <div className="bg-gray-50 rounded-lg p-4 flex justify-between items-center">
-                          <span className="text-lg font-medium text-text-secondary">
+                        <div className="bg-gray-50 rounded-xl p-4 sm:p-6 flex justify-between items-center">
+                          <span className="text-lg sm:text-xl font-medium text-gray-700">
                             {t("morning")}
                           </span>
-                          <span className="font-bold text-lg text-text-primary">
+                          <span className="font-bold text-lg sm:text-xl text-gray-800">
                             {doctor.morningHours}
                           </span>
                         </div>
                       )}
                       {doctor.eveningHours && (
-                        <div className="bg-gray-50 rounded-lg p-4 flex justify-between items-center">
-                          <span className="text-lg font-medium text-text-secondary">
+                        <div className="bg-gray-50 rounded-xl p-4 sm:p-6 flex justify-between items-center">
+                          <span className="text-lg sm:text-xl font-medium text-gray-700">
                             {t("evening")}
                           </span>
-                          <span className="font-bold text-lg text-text-primary">
+                          <span className="font-bold text-lg sm:text-xl text-gray-800">
                             {doctor.eveningHours}
                           </span>
                         </div>
                       )}
                     </div>
 
-                    <div className="mt-6 text-center">
+                    <div className="mt-6 sm:mt-8 text-center">
                       <span
-                        className={`px-4 py-2 rounded-full text-sm font-bold ${
+                        className={`px-6 py-3 rounded-full text-sm sm:text-base font-bold ${
                           isAvailable
-                            ? "bg-green-100 text-green-800 border border-green-300"
-                            : "bg-red-100 text-red-800 border border-red-300"
+                            ? "bg-green-100 text-green-800 border-2 border-green-300"
+                            : "bg-red-100 text-red-800 border-2 border-red-300"
                         }`}
                       >
                         {isAvailable

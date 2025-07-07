@@ -1,5 +1,5 @@
 // server/index.ts
-import express from "express";
+import express2 from "express";
 import cors from "cors";
 
 // server/routes.ts
@@ -31,8 +31,10 @@ var storage = new MemStorage();
 // server/routes.ts
 import path from "path";
 import { fileURLToPath } from "url";
+import express from "express";
 var __filename = fileURLToPath(import.meta.url);
 var __dirname = path.dirname(__filename);
+var router = express.Router();
 async function registerRoutes(app2) {
   app2.get("/api/health", (req, res) => {
     res.json({
@@ -51,7 +53,7 @@ async function registerRoutes(app2) {
           "registration": false,
           "email": "Zeeshanshaikh5045@gmail.com",
           "mobile": "+91 7860120688",
-          "image": "/images/doctors/doctImage1.jpeg",
+          "image": "/images/doctors/dr_zeeshan_img.webp",
           "morningHours": "9:00 AM - 03:00 PM",
           "eveningHours": "5:00 PM - 10:00 PM",
           "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -64,7 +66,7 @@ async function registerRoutes(app2) {
           "registration": false,
           "email": "imabadakhshanmalik@gmail.com",
           "mobile": "+91 7309886038",
-          "image": "/images/doctors/doctImage2.jpeg",
+          "image": "/images/doctors/dr_badakhshan_img.webp",
           "morningHours": "08:00 AM - 2:00 PM",
           "eveningHours": "4:00 PM - 09:00 PM",
           "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -310,15 +312,15 @@ async function registerRoutes(app2) {
 }
 
 // server/index.ts
-var app = express();
+var app = express2();
 var corsOptions = {
   origin: process.env.NODE_ENV === "production" ? [process.env.CORS_ORIGIN || "https://samad-nursing-home-client.vercel.app"] : ["http://localhost:3000", "http://localhost:5173"],
   credentials: true,
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express2.json());
+app.use(express2.urlencoded({ extended: false }));
 app.use((req, res, next) => {
   const start = Date.now();
   const path2 = req.path;

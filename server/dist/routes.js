@@ -2,8 +2,10 @@ import { createServer } from "http";
 import { storage } from "./storage.js";
 import path from "path";
 import { fileURLToPath } from "url";
+import express from 'express';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const router = express.Router();
 export async function registerRoutes(app) {
     // API Routes
     app.get('/api/health', (req, res) => {
@@ -24,7 +26,7 @@ export async function registerRoutes(app) {
                     "registration": false,
                     "email": "Zeeshanshaikh5045@gmail.com",
                     "mobile": "+91 7860120688",
-                    "image": "/images/doctors/doctImage1.jpeg",
+                    "image": "/images/doctors/dr_zeeshan_img.webp",
                     "morningHours": "9:00 AM - 03:00 PM",
                     "eveningHours": "5:00 PM - 10:00 PM",
                     "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -37,7 +39,7 @@ export async function registerRoutes(app) {
                     "registration": false,
                     "email": "imabadakhshanmalik@gmail.com",
                     "mobile": "+91 7309886038",
-                    "image": "/images/doctors/doctImage2.jpeg",
+                    "image": "/images/doctors/dr_badakhshan_img.webp",
                     "morningHours": "08:00 AM - 2:00 PM",
                     "eveningHours": "4:00 PM - 09:00 PM",
                     "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -287,3 +289,4 @@ export async function registerRoutes(app) {
     const httpServer = createServer(app);
     return httpServer;
 }
+export default router;
