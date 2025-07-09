@@ -93,9 +93,9 @@ export default function Footer() {
           <p className="text-gray-300 text-sm sm:text-base">
             <span>{t('copyright')}</span>
             <span className="mx-2 sm:mx-3">|</span>
-            <span>{t('privacy')}</span>
+            <a href="/privacy-policy" className="hover:underline hover:text-medical-teal focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200">{t('privacy')}</a>
             <span className="mx-2 sm:mx-3">|</span>
-            <span>{t('terms')}</span>
+            <a href="/terms-of-service" className="hover:underline hover:text-medical-teal focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200">{t('terms')}</a>
           </p>
         </div>
       </div>

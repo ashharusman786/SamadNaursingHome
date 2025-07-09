@@ -13,20 +13,31 @@ interface TranslationContextType {
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
 
 export function TranslationProvider({ children }: { children: React.ReactNode }) {
-  const [currentLang, setCurrentLang] = useState<Language>('en');
+  const [currentLang, setCurrentLang] = useState<Language>(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('lang');
+      if (stored === 'en' || stored === 'hi') return stored;
+    }
+    return 'en';
+  });
 
   const translations: Translations = translationsData;
 
   const t = (key: string): string => {
-    return translations[currentLang][key as keyof typeof translations['en']] || key;
+    return (translations[currentLang] as Record<string, string>)[key] || key;
   };
 
   const toggleLanguage = () => {
-    setCurrentLang(prev => prev === 'en' ? 'hi' : 'en');
+    setCurrentLang(prev => {
+      const next = prev === 'en' ? 'hi' : 'en';
+      localStorage.setItem('lang', next);
+      return next;
+    });
   };
 
   useEffect(() => {
     document.documentElement.setAttribute('lang', currentLang);
+    localStorage.setItem('lang', currentLang);
   }, [currentLang]);
 
   return (

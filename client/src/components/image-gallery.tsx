@@ -7,12 +7,13 @@ export default function ImageGallery() {
 
   const galleryImages = [
     {
-      src: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
+      src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
       alt: "Hospital Reception",
       title: t("reception"),
     },
     {
-      src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
+  
+      src: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400",
       alt: "Patient Room",
       title: t("patient-room"),
     },
