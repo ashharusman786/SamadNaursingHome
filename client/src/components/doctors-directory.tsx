@@ -41,7 +41,7 @@ export default function DoctorsDirectory() {
                       loading="lazy"
                       decoding="async"
                       onError={(e) => {
-                        // Fallback to a placeholder if image fails to load
+                        // Hide the image on error and show the fallback placeholder
                         e.currentTarget.style.display = 'none';
                         e.currentTarget.nextElementSibling?.classList.remove('hidden');
                       }}
