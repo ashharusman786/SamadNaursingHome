@@ -57,6 +57,7 @@ export default function HeroSection() {
                 className="btn-secondary inline-flex items-center gap-3 w-full sm:w-auto text-base sm:text-lg"
               >
                 <MapPin className="w-5 h-5" />
+                className="btn-primary inline-flex items-center gap-3 w-full sm:w-auto text-base sm:text-lg"
                 {t('get-directions')}
               </Button>
             </div>
