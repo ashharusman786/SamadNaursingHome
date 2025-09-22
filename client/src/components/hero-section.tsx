@@ -54,7 +54,7 @@ export default function HeroSection() {
 
               <Button
                 onClick={() => scrollToSection('contact')}
-                className="btn-primary inline-flex items-center gap-3 w-full sm:w-auto text-base sm:text-lg"
+                className="btn-secondary inline-flex items-center gap-3 w-full sm:w-auto text-base sm:text-lg"
               >
                 <MapPin className="w-5 h-5" />
                 {t('get-directions')}
