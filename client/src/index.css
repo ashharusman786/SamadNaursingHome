@@ -226,16 +226,17 @@ body {
   }
 
   .btn-secondary {
-    background: hsl(240, 10%, 3.9%);;
-    border: 2px solid var(--medical-primary);
+    background: hsl(120, 50%, 40%); 
+    border: 2px solid hsl(120, 50%, 40%);
     border-radius: 12px;
     padding: 14px 30px;
     font-weight: 600;
     font-size: 16px;
-    color: var(--medical-primary);
+    color: hsl(120, 100%, 95%); 
     box-shadow: var(--shadow-md);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
+
 
   .btn-secondary:hover {
     background: var(--medical-primary);
