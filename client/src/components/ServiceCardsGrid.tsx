@@ -7,47 +7,62 @@ export default function ServiceCardsGrid() {
 
   const services = useMemo(() => [
     {
-      icon: <Ambulance className="w-12 h-12 text-medical-teal drop-shadow-md" />,
+      icon: <Ambulance className="w-14 h-14 text-blue-600 drop-shadow-lg" />,
       title: t("Emergency-Service-title"),
-      desc: t("Emergency-Service-description")
+      desc: t("Emergency-Service-description"),
+      color: "blue"
     },
     {
-      icon: <HeartPulse className="w-12 h-12 text-medical-purple drop-shadow-md" />,
+      icon: <HeartPulse className="w-14 h-14 text-red-500 drop-shadow-lg" />,
       title: t("Cardiac Cares-service-title"),
-      desc: t("Cardiac Cares-service-description")
+      desc: t("Cardiac Cares-service-description"),
+      color: "red"
     },
     {
-      icon: <Syringe className="w-12 h-12 text-medical-orange drop-shadow-md" />,
+      icon: <Syringe className="w-14 h-14 text-green-600 drop-shadow-lg" />,
       title: t("Vaccination-service-title"),
-      desc: t("Vaccination-service-description")
+      desc: t("Vaccination-service-description"),
+      color: "green"
     },
     {
-      icon: <Hospital className="w-12 h-12 text-medical-green drop-shadow-md" />,
+      icon: <Hospital className="w-14 h-14 text-purple-600 drop-shadow-lg" />,
       title: t("Inpatient Wards-service-title"),
-      desc: t("Inpatient Wards-service-description")
+      desc: t("Inpatient Wards-service-description"),
+      color: "purple"
     }
   ], [t]);
 
+  const getColorClasses = (color: string) => {
+    const colorMap = {
+      blue: "from-blue-50 to-blue-100 border-blue-200 hover:border-blue-300",
+      red: "from-red-50 to-red-100 border-red-200 hover:border-red-300",
+      green: "from-green-50 to-green-100 border-green-200 hover:border-green-300",
+      purple: "from-purple-50 to-purple-100 border-purple-200 hover:border-purple-300"
+    };
+    return colorMap[color as keyof typeof colorMap] || colorMap.blue;
+  };
+
   return (
-    <section className="w-full max-w-5xl mx-auto my-12 px-4">
-      <h3 className="text-2xl font-bold text-medical-teal dark:text-medical-teal mb-8 text-center tracking-tight">{t("Our Services-title")}</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+    <section className="w-full max-w-7xl mx-auto my-20 px-4">
+      <div className="text-center mb-16">
+        <h3 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent mb-4 tracking-tight">{t("Our Services-title")}</h3>
+        <p className="text-xl text-gray-600 max-w-2xl mx-auto">Comprehensive healthcare services designed with your well-being in mind</p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {services.map((service, i) => (
           <div
             key={i}
-            className="relative glassmorphism rounded-3xl shadow-2xl p-8 flex flex-col items-center text-center transition-transform hover:scale-105 hover:shadow-2xl border border-white/30 dark:border-gray-700 bg-white/80 dark:bg-gray-900/60 cursor-pointer group overflow-hidden"
+            className={`modern-card p-8 flex flex-col items-center text-center cursor-pointer group bg-gradient-to-br ${getColorClasses(service.color)} border-2 transition-all duration-500`}
             tabIndex={0}
             aria-label={service.title}
           >
-            {/* Accent top border */}
-            <div className={`absolute top-0 left-0 w-full h-2 rounded-t-3xl ${i===0?'bg-medical-teal':i===1?'bg-medical-purple':i===2?'bg-medical-orange':'bg-medical-green'}`}></div>
-            <div className="mb-4 mt-2 flex items-center justify-center">
+            <div className="mb-6 flex items-center justify-center p-4 rounded-2xl bg-white/80 shadow-lg group-hover:shadow-xl transition-all duration-300">
               {service.icon}
             </div>
-            <div className="font-semibold text-lg text-gray-800 dark:text-gray-100 mb-2 tracking-tight group-hover:text-medical-teal transition-colors">
+            <div className="font-bold text-xl text-gray-800 mb-3 tracking-tight group-hover:text-blue-600 transition-colors">
               {service.title}
             </div>
-            {service.desc && <div className="text-gray-600 dark:text-gray-300 text-base mb-2">{service.desc}</div>}
+            {service.desc && <div className="text-gray-600 text-base leading-relaxed">{service.desc}</div>}
           </div>
         ))}
       </div>

@@ -15,14 +15,14 @@ body {
 }
 
 :root {
-  --background: hsl(240, 10%, 10%);
-  --foreground: hsl(44, 33%, 15%);
+  --background: hsl(210, 20%, 98%);
+  --foreground: hsl(210, 24%, 16%);
   --muted: hsl(60, 4.8%, 95.9%);
   --muted-foreground: hsl(25, 5.3%, 44.7%);
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(44, 33%, 15%);
+  --popover-foreground: hsl(210, 24%, 16%);
   --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(44, 33%, 15%);
+  --card-foreground: hsl(210, 24%, 16%);
   --border: hsl(20, 5.9%, 90%);
   --input: hsl(20, 5.9%, 90%);
   --primary: hsl(175, 70%, 98%);
@@ -33,18 +33,26 @@ body {
   --accent-foreground: hsl(24, 9.8%, 10%);
   --destructive: hsl(0, 84.2%, 60.2%);
   --destructive-foreground: hsl(60, 9.1%, 97.8%);
-  --ring: hsl(44, 33%, 15%);
+  --ring: hsl(210, 24%, 16%);
   --radius: 0.5rem;
 
   /* Custom Medical Theme Colors */
-  --medical-teal: hsl(177, 70%, 41%);
-  --medical-purple: hsl(259, 49%, 51%);
-  --medical-orange: hsl(24, 70%, 50%);
-  --medical-green: hsl(142, 70%, 41%);
-  --text-primary: hsl(210, 40%, 8%);
-  --text-secondary: hsl(217, 30%, 15%);
-  --bg-primary: hsl(180, 100%, 99%);
+  --medical-primary: hsl(200, 85%, 45%);
+  --medical-secondary: hsl(200, 25%, 25%);
+  --medical-accent: hsl(160, 60%, 45%);
+  --medical-neutral: hsl(210, 15%, 95%);
+  --medical-warm: hsl(25, 95%, 53%);
+  --text-primary: hsl(210, 24%, 16%);
+  --text-secondary: hsl(210, 16%, 46%);
+  --bg-primary: hsl(210, 20%, 98%);
   --card-bg: hsl(0, 0%, 100%);
+  
+  /* Enhanced Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 }
 
 .dark {
@@ -82,11 +90,12 @@ body {
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
-    font-family: 'Inter', 'Noto Sans Devanagari', 'Poppins', sans-serif;
-    line-height: 1.6;
+    font-family: 'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
+    line-height: 1.7;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
 
   html {
@@ -100,62 +109,66 @@ body {
   h4,
   h5,
   h6 {
-    line-height: 1.3;
+    line-height: 1.2;
     margin-top: 0;
     margin-bottom: 0.5em;
     overflow-wrap: break-word;
     word-wrap: break-word;
+    font-weight: 700;
+    letter-spacing: -0.025em;
   }
 
   p {
-    line-height: 1.6;
+    line-height: 1.7;
     margin-top: 0;
     margin-bottom: 1em;
     overflow-wrap: break-word;
     word-wrap: break-word;
+    color: var(--text-secondary);
   }
 
   /* Ensure proper text rendering for Hindi */
   .hindi-text,
   [lang="hi"] {
     font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
-    line-height: 1.5;
+    line-height: 1.6;
     text-rendering: optimizeLegibility;
   }
 }
 
 @layer components {
   .glassmorphism {
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow-lg);
   }
 
   .gradient-overlay {
-    background: linear-gradient(135deg, rgba(32, 178, 170, 0.1) 0%, rgba(111, 66, 193, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
   }
 
   .card-hover {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .card-hover:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-2xl);
   }
 
   .status-open {
-    background: linear-gradient(90deg, #28A745, #20C997);
+    background: linear-gradient(135deg, #10b981, #059669);
     color: white;
   }
 
   .status-closed {
-    background: linear-gradient(90deg, #DC3545, #E74C3C);
+    background: linear-gradient(135deg, #ef4444, #dc2626);
     color: white;
   }
 
   .hero-gradient {
-    background: linear-gradient(135deg, rgba(52, 54, 54, 0.9) 0%, rgba(111, 66, 193, 0.8) 100%);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.95) 0%, rgba(16, 185, 129, 0.9) 100%);
   }
 
   .floating-btn {
@@ -163,7 +176,8 @@ body {
     bottom: 20px;
     right: 20px;
     z-index: 1000;
-    animation: float 3s ease-in-out infinite;
+    animation: float 4s ease-in-out infinite;
+    box-shadow: var(--shadow-xl);
   }
 
   @keyframes float {
@@ -174,17 +188,60 @@ body {
     }
 
     50% {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
     }
   }
 
   .lazy-load {
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.6s ease-out;
   }
 
   .lazy-load.loaded {
     opacity: 1;
+  }
+
+  /* Modern Button Styles */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--medical-primary), var(--medical-accent));
+    border: none;
+    border-radius: 12px;
+    padding: 16px 32px;
+    font-weight: 600;
+    font-size: 16px;
+    color: white;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .btn-secondary {
+    background: white;
+    border: 2px solid var(--medical-primary);
+    border-radius: 12px;
+    padding: 14px 30px;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--medical-primary);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-secondary:hover {
+    background: var(--medical-primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
   }
 
   /* Text rendering utilities */
@@ -192,7 +249,7 @@ body {
     overflow-wrap: break-word;
     word-wrap: break-word;
     hyphens: auto;
-    line-height: 1.5;
+    line-height: 1.7;
     padding: 0.25em 0;
   }
 
@@ -204,8 +261,41 @@ body {
     overflow-wrap: break-word;
     word-wrap: break-word;
     hyphens: auto;
-    line-height: 1.5;
+    line-height: 1.7;
     padding: 0.5em 0;
+  }
+
+  /* Enhanced Card Styles */
+  .modern-card {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid rgba(59, 130, 246, 0.1);
+    box-shadow: var(--shadow-md);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .modern-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--medical-primary), var(--medical-accent));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .modern-card:hover::before {
+    opacity: 1;
+  }
+
+  .modern-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-2xl);
+    border-color: rgba(59, 130, 246, 0.2);
   }
 }
 
@@ -278,36 +368,36 @@ body {
 }
 
 /* Medical theme color utilities */
-.text-medical-teal {
-  color: var(--medical-teal);
+.text-medical-primary {
+  color: var(--medical-primary);
 }
 
-.text-medical-purple {
-  color: var(--medical-purple);
+.text-medical-secondary {
+  color: var(--medical-secondary);
 }
 
-.text-medical-orange {
-  color: var(--medical-orange);
+.text-medical-accent {
+  color: var(--medical-accent);
 }
 
-.text-medical-green {
-  color: var(--medical-green);
+.text-medical-warm {
+  color: var(--medical-warm);
 }
 
-.bg-medical-teal {
-  background-color: var(--medical-teal);
+.bg-medical-primary {
+  background-color: var(--medical-primary);
 }
 
-.bg-medical-purple {
-  background-color: var(--medical-purple);
+.bg-medical-secondary {
+  background-color: var(--medical-secondary);
 }
 
-.bg-medical-orange {
-  background-color: var(--medical-orange);
+.bg-medical-accent {
+  background-color: var(--medical-accent);
 }
 
-.bg-medical-green {
-  background-color: var(--medical-green);
+.bg-medical-neutral {
+  background-color: var(--medical-neutral);
 }
 
 .text-text-primary {
@@ -326,32 +416,34 @@ body {
   background-color: var(--card-bg);
 }
 
-.border-medical-teal {
-  border-color: var(--medical-teal);
+.border-medical-primary {
+  border-color: var(--medical-primary);
 }
 
-.hover\:bg-medical-teal:hover {
-  background-color: var(--medical-teal);
+.hover\:bg-medical-primary:hover {
+  background-color: var(--medical-primary);
 }
 
-.hover\:text-medical-teal:hover {
-  color: var(--medical-teal);
+.hover\:text-medical-primary:hover {
+  color: var(--medical-primary);
 }
 
-.hover\:text-medical-purple:hover {
-  color: var(--medical-purple);
+.hover\:text-medical-accent:hover {
+  color: var(--medical-accent);
 }
 
 /* Tetradic gradient for hero buttons */
 .btn-tetradic {
-  background: linear-gradient(135deg, var(--medical-teal) 0%, var(--medical-purple) 25%, var(--medical-orange) 50%, var(--medical-green) 75%, var(--medical-teal) 100%);
+  background: linear-gradient(135deg, var(--medical-primary) 0%, var(--medical-accent) 50%, var(--medical-primary) 100%);
   color: white;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-lg);
 }
 
 .btn-tetradic:hover {
-  background: linear-gradient(135deg, var(--medical-green) 0%, var(--medical-teal) 25%, var(--medical-purple) 50%, var(--medical-orange) 75%, var(--medical-green) 100%);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, var(--medical-accent) 0%, var(--medical-primary) 50%, var(--medical-accent) 100%);
+  box-shadow: var(--shadow-2xl);
+  transform: translateY(-2px);
 }
 
 /* Enhanced Hindi Text Support */
@@ -359,7 +451,7 @@ body {
   word-break: break-word;
   white-space: normal;
   hyphens: auto;
-  line-height: 1.5;
+  line-height: 1.6;
   font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
   text-rendering: optimizeLegibility;
 }
@@ -368,7 +460,7 @@ body {
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
-  line-height: 1.5;
+  line-height: 1.7;
   overflow: visible;
 }
 
@@ -376,17 +468,17 @@ body {
 @media (max-width: 768px) {
   .hindi-text {
     font-size: 0.9em;
-    line-height: 1.4;
+    line-height: 1.5;
   }
 
   .text-safe {
-    line-height: 1.4;
+    line-height: 1.6;
     padding: 0.2em 0;
   }
 
   .card-text-safe {
     padding: 0.5em 0;
-    line-height: 1.4;
+    line-height: 1.6;
   }
 }
 
