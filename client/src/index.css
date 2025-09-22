@@ -226,7 +226,7 @@ body {
   }
 
   .btn-secondary {
-    background: green;
+    background: hsl(240, 10%, 3.9%);;
     border: 2px solid var(--medical-primary);
     border-radius: 12px;
     padding: 14px 30px;
