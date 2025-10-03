@@ -1,6 +1,6 @@
 import { useTranslation } from "@/hooks/use-translation";
 import { Card, CardContent } from "@/components/ui/card";
-import { Phone, Mail, Clock, Calendar, CheckCircle, XCircle, UserRound } from "lucide-react";
+import { Phone, Mail, Clock, Calendar, CircleCheck as CheckCircle, Circle as XCircle, UserRound } from "lucide-react";
 import doctorsData from "@/data/doctors.json";
 import { useDoctorAvailability } from "@/hooks/use-doctor-availabilty";
 
