@@ -27,8 +27,8 @@ export default function HeroSection() {
           <div className="max-w-4xl lg:max-w-6xl mx-auto w-full">
             <div className="glassmorphism rounded-3xl p-6 sm:p-10 md:p-16 lg:p-24 border border-white/30 shadow-2xl bg-white/90 backdrop-blur-xl w-full">
             {/* Badge */}
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-50 to-teal-50 rounded-full px-6 py-3 mb-8 sm:mb-10 border border-blue-200/50 text-blue-700 text-sm font-semibold shadow-md">
-              <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-50 to-teal-50 rounded-full px-6 py-3 mb-8 sm:mb-10 border border-blue-200/50 text-blue-700 text-sm font-semibold shadow-md" role="status" aria-live="polite">
+              <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" aria-hidden="true"></span>
               {t('24/7-timings')}
             </div>
 
@@ -47,15 +47,18 @@ export default function HeroSection() {
               <Button
                 onClick={() => scrollToSection('doctors')}
                 className="btn-primary inline-flex items-center gap-3 w-full sm:w-auto text-base sm:text-lg"
+                aria-label="View our doctors directory"
               >
-                <UserRound className="w-5 h-5" />
+                <UserRound className="w-5 h-5" aria-hidden="true" />
                 {t('view-doctors')}
               </Button>
 
               <Button
                 onClick={() => scrollToSection('contact')}
-                className="btn-secondary inline-flex items-center gap-3 w-full sm:w-auto text-base sm:text-lg"              >
-                <MapPin className="w-5 h-5" />
+                className="btn-secondary inline-flex items-center gap-3 w-full sm:w-auto text-base sm:text-lg"
+                aria-label="Get directions to our location"
+              >
+                <MapPin className="w-5 h-5" aria-hidden="true" />
                 {t('get-directions')}
               </Button>
             </div>

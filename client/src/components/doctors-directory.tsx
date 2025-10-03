@@ -116,19 +116,21 @@ export default function DoctorsDirectory() {
                       href={`https://mail.google.com/mail/?view=cm&fs=1&to=${doctor.email}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-purple-50 to-pink-50 hover:from-purple-100 hover:to-pink-100 transition-all duration-300 group/email border border-purple-200/50 hover:border-purple-300/50"
+                      className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-blue-50 to-cyan-50 hover:from-blue-100 hover:to-cyan-100 transition-all duration-300 group/email border border-blue-200/50 hover:border-blue-400/50 hover:scale-105"
+                      aria-label={`Email ${doctor.name} at ${doctor.email}`}
                     >
-                      <Mail className="w-5 h-5 text-purple-600 group-hover/email:text-purple-700" />
-                      <span className="text-purple-700 group-hover/email:text-purple-800 font-semibold text-base sm:text-lg text-safe truncate">
+                      <Mail className="w-5 h-5 text-blue-600 group-hover/email:text-blue-700 transition-colors" aria-hidden="true" />
+                      <span className="text-blue-700 group-hover/email:text-blue-800 font-semibold text-base sm:text-lg text-safe truncate">
                         {doctor.email}
                       </span>
                     </a>
 
                     <a
                       href={`tel:${doctor.mobile}`}
-                      className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-teal-50 to-blue-50 hover:from-teal-100 hover:to-blue-100 transition-all duration-300 group/phone border border-teal-200/50 hover:border-teal-300/50"
+                      className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-teal-50 to-blue-50 hover:from-teal-100 hover:to-blue-100 transition-all duration-300 group/phone border border-teal-200/50 hover:border-teal-400/50 hover:scale-105"
+                      aria-label={`Call ${doctor.name} at ${doctor.mobile}`}
                     >
-                      <Phone className="w-5 h-5 text-teal-600 group-hover/phone:text-teal-700" />
+                      <Phone className="w-5 h-5 text-teal-600 group-hover/phone:text-teal-700 transition-colors" aria-hidden="true" />
                       <span className="text-teal-700 group-hover/phone:text-teal-800 font-semibold text-base sm:text-lg text-safe">
                         {doctor.mobile}
                       </span>

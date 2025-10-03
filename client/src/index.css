@@ -36,14 +36,19 @@ body {
   --ring: hsl(210, 24%, 16%);
   --radius: 0.5rem;
 
-  /* Custom Medical Theme Colors */
+  /* Custom Medical Theme Colors - Healthcare Focused */
   --medical-primary: hsl(200, 85%, 45%);
-  --medical-secondary: hsl(200, 25%, 25%);
-  --medical-accent: hsl(160, 60%, 45%);
+  --medical-secondary: hsl(200, 30%, 30%);
+  --medical-accent: hsl(160, 65%, 45%);
+  --medical-teal: hsl(175, 70%, 40%);
+  --medical-cyan: hsl(190, 80%, 50%);
   --medical-neutral: hsl(210, 15%, 95%);
   --medical-warm: hsl(25, 95%, 53%);
+  --medical-success: hsl(142, 70%, 45%);
+  --medical-info: hsl(200, 85%, 50%);
   --text-primary: hsl(210, 24%, 16%);
   --text-secondary: hsl(210, 16%, 46%);
+  --text-muted: hsl(210, 12%, 55%);
   --bg-primary: hsl(210, 20%, 98%);
   --card-bg: hsl(0, 0%, 100%);
   
@@ -83,6 +88,12 @@ body {
     border-color: hsl(var(--border));
   }
 
+  *:focus-visible {
+    outline: 2px solid var(--medical-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
   body,
   html {
     @apply overflow-x-hidden;
@@ -91,7 +102,7 @@ body {
   body {
     @apply font-sans antialiased bg-background text-foreground;
     font-family: 'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
-    line-height: 1.7;
+    line-height: 1.65;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -109,17 +120,29 @@ body {
   h4,
   h5,
   h6 {
-    line-height: 1.2;
+    line-height: 1.25;
     margin-top: 0;
     margin-bottom: 0.5em;
     overflow-wrap: break-word;
     word-wrap: break-word;
     font-weight: 700;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 4vw, 3rem);
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
   }
 
   p {
-    line-height: 1.7;
+    line-height: 1.65;
     margin-top: 0;
     margin-bottom: 1em;
     overflow-wrap: break-word;
@@ -138,9 +161,9 @@ body {
 
 @layer components {
   .glassmorphism {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.90);
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: var(--shadow-lg);
   }
 
@@ -153,7 +176,7 @@ body {
   }
 
   .card-hover:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-10px) scale(1.02);
     box-shadow: var(--shadow-2xl);
   }
 
@@ -178,6 +201,13 @@ body {
     z-index: 1000;
     animation: float 4s ease-in-out infinite;
     box-shadow: var(--shadow-xl);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .floating-btn:hover {
+    animation-play-state: paused;
+    transform: translateY(-4px) scale(1.1);
+    box-shadow: var(--shadow-2xl);
   }
 
   @keyframes float {
@@ -188,7 +218,7 @@ body {
     }
 
     50% {
-      transform: translateY(-8px);
+      transform: translateY(-10px);
     }
   }
 
@@ -203,9 +233,9 @@ body {
 
   /* Modern Button Styles */
   .btn-primary {
-    background: linear-gradient(135deg, var(--medical-primary), var(--medical-accent));
+    background: linear-gradient(135deg, var(--medical-primary), var(--medical-teal));
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     padding: 16px 32px;
     font-weight: 600;
     font-size: 16px;
@@ -216,33 +246,76 @@ body {
     overflow: hidden;
   }
 
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--medical-teal), var(--medical-primary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
   .btn-primary:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.02);
     box-shadow: var(--shadow-xl);
   }
 
+  .btn-primary:hover::before {
+    opacity: 1;
+  }
+
   .btn-primary:active {
-    transform: translateY(0);
+    transform: translateY(-1px) scale(1);
+  }
+
+  .btn-primary > * {
+    position: relative;
+    z-index: 1;
   }
 
   .btn-secondary {
-    background: hsl(120, 50%, 40%); 
-    border: 2px solid hsl(120, 50%, 40%);
-    border-radius: 12px;
+    background: white;
+    border: 2px solid var(--medical-primary);
+    border-radius: 14px;
     padding: 14px 30px;
     font-weight: 600;
     font-size: 16px;
-    color: hsl(120, 100%, 95%); 
+    color: var(--medical-primary);
     box-shadow: var(--shadow-md);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
   }
 
+  .btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--medical-primary), var(--medical-teal));
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
 
   .btn-secondary:hover {
-    background: var(--medical-primary);
     color: white;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    border-color: var(--medical-teal);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .btn-secondary:hover::before {
+    transform: translateY(0);
+  }
+
+  .btn-secondary > * {
+    position: relative;
+    z-index: 1;
   }
 
   /* Text rendering utilities */
@@ -269,7 +342,7 @@ body {
   /* Enhanced Card Styles */
   .modern-card {
     background: white;
-    border-radius: 20px;
+    border-radius: 24px;
     border: 1px solid rgba(59, 130, 246, 0.1);
     box-shadow: var(--shadow-md);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -284,7 +357,7 @@ body {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--medical-primary), var(--medical-accent));
+    background: linear-gradient(90deg, var(--medical-primary), var(--medical-teal));
     opacity: 0;
     transition: opacity 0.3s ease;
   }
@@ -294,9 +367,9 @@ body {
   }
 
   .modern-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px);
     box-shadow: var(--shadow-2xl);
-    border-color: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.25);
   }
 }
 
@@ -343,28 +416,46 @@ body {
     padding: 1rem;
   }
 
+  .modern-card:hover {
+    transform: translateY(-4px);
+  }
+
   /* Mobile button improvements */
   .mobile-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
     width: 100%;
+    min-height: 48px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    min-height: 48px;
+    padding: 14px 28px;
   }
 
   /* Mobile spacing improvements */
   .mobile-section {
-    padding: 2rem 1rem;
+    padding: 2.5rem 1.25rem;
   }
 
   .mobile-heading {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     line-height: 1.3;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
   }
 
   .mobile-subheading {
-    font-size: 1rem;
-    line-height: 1.4;
-    margin-bottom: 1.5rem;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    margin-bottom: 1.75rem;
+  }
+
+  /* Improved touch targets */
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
   }
 }
 
@@ -549,11 +640,42 @@ body,
 
 .reveal-init {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(50px);
+  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal {
   opacity: 1 !important;
   transform: none !important;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

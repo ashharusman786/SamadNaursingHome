@@ -37,7 +37,7 @@ export default function MissionSection() {
             </div>
             
             <div className="group modern-card p-8 sm:p-10 w-full">
-              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl flex items-center justify-center mx-auto mb-6 sm:mb-8 shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-orange-500 to-red-600 rounded-3xl flex items-center justify-center mx-auto mb-6 sm:mb-8 shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110">
                 <Award className="text-white text-2xl sm:text-3xl group-hover:scale-110 transition-transform duration-300" />
               </div>
               <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-5 text-gray-800 text-center break-words hindi-text text-safe w-full">{t('value-excellence')}</h3>
@@ -62,7 +62,7 @@ export default function MissionSection() {
                   <div className="text-gray-600 font-semibold text-base sm:text-lg">{t('value-happy-patients')}</div>
                 </div>
                 <div className="group w-full">
-                  <div className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3">24/7</div>
+                  <div className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent mb-3">24/7</div>
                   <div className="text-gray-600 font-semibold text-base sm:text-lg">{t('value-emergency-care')}</div>
                 </div>
                 <div className="group w-full">

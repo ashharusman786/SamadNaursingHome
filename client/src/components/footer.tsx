@@ -30,15 +30,18 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection('home')}
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base hover:translate-x-1 transform"
+                  className="text-gray-300 hover:text-teal-400 transition-all duration-300 text-sm sm:text-base hover:translate-x-2 transform inline-flex items-center gap-2"
+                  aria-label="Navigate to home section"
                 >
+                  <span className="w-0 h-0.5 bg-teal-400 transition-all duration-300 group-hover:w-4"></span>
                   {t('nav-home')}
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => scrollToSection('doctors')}
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base hover:translate-x-1 transform"
+                  className="text-gray-300 hover:text-teal-400 transition-all duration-300 text-sm sm:text-base hover:translate-x-2 transform"
+                  aria-label="Navigate to doctors section"
                 >
                   {t('nav-doctors')}
                 </button>
@@ -46,7 +49,8 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection('timings')}
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base hover:translate-x-1 transform"
+                  className="text-gray-300 hover:text-teal-400 transition-all duration-300 text-sm sm:text-base hover:translate-x-2 transform"
+                  aria-label="Navigate to timings section"
                 >
                   {t('nav-timings')}
                 </button>
@@ -54,7 +58,8 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection('gallery')}
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base hover:translate-x-1 transform"
+                  className="text-gray-300 hover:text-teal-400 transition-all duration-300 text-sm sm:text-base hover:translate-x-2 transform"
+                  aria-label="Navigate to gallery section"
                 >
                   {t('nav-gallery')}
                 </button>
@@ -62,7 +67,8 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="text-gray-300 hover:text-white transition-colors duration-200 text-sm sm:text-base hover:translate-x-1 transform"
+                  className="text-gray-300 hover:text-teal-400 transition-all duration-300 text-sm sm:text-base hover:translate-x-2 transform"
+                  aria-label="Navigate to contact section"
                 >
                   {t('nav-contact')}
                 </button>
@@ -93,9 +99,9 @@ export default function Footer() {
           <p className="text-gray-300 text-sm sm:text-base">
             <span>{t('copyright')}</span>
             <span className="mx-2 sm:mx-3">|</span>
-            <a href="/privacy-policy" className="hover:underline hover:text-medical-teal focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200">{t('privacy')}</a>
+            <a href="/privacy-policy" className="hover:underline hover:text-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-300" aria-label="View privacy policy">{t('privacy')}</a>
             <span className="mx-2 sm:mx-3">|</span>
-            <a href="/terms-of-service" className="hover:underline hover:text-medical-teal focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200">{t('terms')}</a>
+            <a href="/terms-of-service" className="hover:underline hover:text-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all duration-300" aria-label="View terms of service">{t('terms')}</a>
           </p>
         </div>
       </div>

@@ -22,11 +22,11 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="relative w-full bg-white border-b border-gray-200 shadow-sm">
+    <nav className="sticky top-14 z-40 w-full bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-md transition-all duration-300">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
         {/* Logo and tagline */}
         <div className="flex items-center gap-3 sm:gap-4">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 to-teal-600 rounded-xl flex items-center justify-center shadow-lg transition-transform duration-300 hover:scale-110">
             <Hospital className="text-white text-lg sm:text-xl" />
           </div>
           <div className="min-w-0">
@@ -45,10 +45,11 @@ export default function Navigation() {
             <button
               key={item.id}
               onClick={() => handleNavClick(item.id)}
-              className="text-gray-700 hover:text-blue-600 font-medium text-sm lg:text-base transition-colors duration-200 relative group"
+              className="text-gray-700 hover:text-teal-600 font-medium text-sm lg:text-base transition-all duration-300 relative group px-2"
+              aria-label={`Navigate to ${item.label}`}
             >
               {item.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-teal-600 transition-all duration-300 group-hover:w-full"></span>
             </button>
           ))}
         </div>
@@ -73,7 +74,8 @@ export default function Navigation() {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className="block w-full py-3 px-4 text-left text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200 font-medium"
+                className="block w-full py-3 px-4 text-left text-gray-700 hover:text-teal-600 hover:bg-blue-50 rounded-lg transition-all duration-300 font-medium"
+                aria-label={`Navigate to ${item.label}`}
               >
                 {item.label}
               </button>

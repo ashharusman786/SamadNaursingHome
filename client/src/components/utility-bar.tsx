@@ -12,10 +12,11 @@ export default function UtilityBar() {
       <div className="flex items-center">
         <a
           href="tel:+917860120688"
-          className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-red-500 to-red-600 text-white text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-          aria-label="Emergency contact: +91 7860120688"
+          className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-red-500 to-red-600 text-white text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
+          aria-label="Emergency contact: Call +91 7860120688"
+          role="button"
         >
-          <Phone className="w-4 h-4 animate-pulse" />
+          <Phone className="w-4 h-4 animate-pulse" aria-hidden="true" />
           <span className="hidden sm:inline">{t('emergency')}</span>
           <span className="sm:hidden">Emergency</span>
         </a>
